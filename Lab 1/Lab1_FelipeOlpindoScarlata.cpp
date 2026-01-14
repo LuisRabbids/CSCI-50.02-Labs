@@ -6,7 +6,7 @@ int main(void){
     string name;                         // instantiate a string variable
     cout << "What is your name?: ";      // prompt and ask user for their name         
     cin >> name;                         // read user's input
-    cout << name << endl;                        // print out the name
+    cout << name << endl;                // print out the name
 
     // 3. Print out the user’s name with only the first letter revealed and all other letters replaced with #
 
