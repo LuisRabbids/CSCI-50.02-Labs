@@ -21,10 +21,10 @@ int main(void){
     // 4. Print out the user’s name with all the letters replaced with the next letter
     for (char c : name) {                                 // loop through each character in the name
         if (c >= 'A' && c <= 'Z') {                       // check if character is uppercase
-            c = (c + 1 - 65) % 26 + 65;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 65 (accounting for ASCII starts with) since 'A' is the 66th in ASCII
+            c = (c + 1 - 65) % 26 + 65;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 65 (accounting for ASCII which starts with 0) since 'A' is the 66th in ASCII
         }
         else if (c >= 'a' && c <= 'z') {                  // check if character is lowercase
-            c = (c + 1 - 97) % 26 + 97;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 97 since 'a' is the 98th in ASCII
+            c = (c + 1 - 97) % 26 + 97;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 97 (accounting for ASCII which starts with 0) since 'a' is the 98th in ASCII
         }
         cout << c;                                        // print the modified character                          
     }
