@@ -1,6 +1,15 @@
 #include <iostream>
 using namespace std;
 
+void shiftFunc(char* x){
+    if (*x >= 'A' && *x <= 'Z') {                       // check if character is uppercase
+        *x = (*x + 1 - 65) % 26 + 65;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 65 (accounting for ASCII which starts with 0) since 'A' is the 66th in ASCII
+    }
+
+    else if (*x >= 'a' && *x <= 'z') {                  // check if character is lowercase
+        *x = (*x + 1 - 97) % 26 + 97;                   // add one to the character and wrap around if necessary using modulo % 26 because there are 26 alphabets, and - 97 (accounting for ASCII which starts with 0) since 'a' is the 98th in ASCII
+    }                          
+}
 
 int main(void){
     //1 and 2. Ask user for their name and print it out
@@ -32,7 +41,11 @@ int main(void){
 
 
     // 5. Function that uses a character pointer argument 
-
+    for (int i = 0; i < name.length(); i++)
+    {
+        shiftFunc(&name[i]);
+    }
+    cout << name << endl;
     
     return 0;
 }
