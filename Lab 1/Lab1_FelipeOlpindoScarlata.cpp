@@ -13,10 +13,17 @@ void shiftFunc(char* x){
 
 int main(void){
     //1 and 2. Ask user for their name and print it out
-    string name;                                          // instantiate a string variable
-    cout << "What is your name?: ";                       // prompt and ask user for their name         
-    cin >> name;                                          // read user's input
-    cout << name << endl;                                 // print out the name
+    string name, result = "";       //string to store the users input
+    cout << "Enter your name: ";    // asks for the user's name
+    getline(cin, name);             // reads entire line
+
+    //removes whitespace characters
+    for (char c : name) {            // loop through each character
+        if (c != ' ') {              //check if character is not a whitespace
+            result += c;             //print if the character if its not a whitespace character
+        }
+    }
+    cout << result << endl;    // print name without spaces
 
 
     //3. Print user's name with first letter revealed and rest as "#"
