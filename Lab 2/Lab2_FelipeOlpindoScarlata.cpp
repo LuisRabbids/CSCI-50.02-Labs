@@ -18,6 +18,7 @@ int main(void){
         cout << "Agent #" << i << " is at (" << x << ", " << y << ")" << endl;      // print the coordinate of current agent
 
         //UPDATE TO TAKE INTO ACCOUNT LARGER NUMBERS (multiple digits)
+        //update to check if message is a number
         if ( message.length() == 1) {                                               // check if the message length is 1 (which is not always so UPDATE)
             cout << "Agent #" << i << " holds up the number: " << message << endl;  // print number held up by agent
         } else {
