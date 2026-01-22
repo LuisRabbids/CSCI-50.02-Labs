@@ -13,7 +13,7 @@ int main(void){
     int numAgents;
     cin >> numAgents;
 
-    for (int i = 0; i < numAgents; i++){
+    for (int i = 1; i-1 < numAgents; i++){
         int x, y;
         cin >> x >> y;              // read in the coordinates of the current agent
         cin.ignore(1, ' ');         // clean up the single space left after 'y'
