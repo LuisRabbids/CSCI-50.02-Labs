@@ -2,6 +2,12 @@
 #include <string>
 using namespace std;
 
+bool isNum(string line)
+{
+    char* p;
+    strtol(line.c_str(), &p, 10);
+    return *p == 0;
+}
 
 int main(void){
     int numAgents;
@@ -19,7 +25,7 @@ int main(void){
 
         //UPDATE TO TAKE INTO ACCOUNT LARGER NUMBERS (multiple digits)
         //update to check if message is a number
-        if ( message.length() == 1) {                                               // check if the message length is 1 (which is not always so UPDATE)
+        if ( isNum(message)) {                                               // check if the message length is 1 (which is not always so UPDATE)
             cout << "Agent #" << i << " holds up the number: " << message << endl;  // print number held up by agent
         } else {
             cout << "Agent #" << i << " yells: \"" << message << "\"" << endl;      // print message yelled by agent
