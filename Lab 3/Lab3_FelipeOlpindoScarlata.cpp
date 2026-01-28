@@ -74,10 +74,65 @@ struct IntList {
     }
 
     // 2e. Deleting a node
-    deleteNode(IntNode* node) {
+    void deleteNode(IntNode* node) {
         delete node;                                // delete the node
         node = NULL;                                // set the node to NULL
     }
+};
+
+
+// 3. IntStack struct
+// Implements a stack using IntNode internally
+// IntNode is NOT exposed to the user
+struct IntStack {
+    private:
+        IntNode* topNode;    // pointer to the top node of the stack (hidden from user)
+        int stackSize;       // tracks the current size of the stack
+
+    public:
+        // Constructor initializes empty stack
+        IntStack() {
+            topNode = NULL;
+            stackSize = 0;
+        }
+
+        // Push: add integer to the top of stack
+        void push(int value) {
+            IntNode* newNode = new IntNode;     // Create a new node
+            newNode->data = value;
+            newNode->next = topNode;            // Link the new node to the current top
+            topNode = newNode;                  // Update the top pointer
+            stackSize++;                        // Increment size
+        }
+
+        // Pop: remove and return integer from top of stack
+        int pop() {
+            if (topNode == NULL) {       // Check if stack is empty                      
+                cout << "Stack is empty. Cannot pop. Returning 0." << endl;
+                return 0;
+            }
+
+            int value = topNode->data;   // Store the value to return
+            IntNode* temp = topNode;     // Store the node to delete
+            topNode = topNode->next;     // Move top pointer to next node
+            delete temp;                 // Delete the old top node
+            stackSize--;                 // Decrement size
+            
+            return value;
+        }
+
+        int size() {                     // Size: return current number of elements in stack
+            return stackSize;
+        }
+
+        // Destructor
+        ~IntStack() {
+            while (topNode != NULL) {
+                IntNode* temp = topNode;
+                topNode = topNode->next;
+                delete temp;
+            }
+        }
 };
 
 //temporary main
