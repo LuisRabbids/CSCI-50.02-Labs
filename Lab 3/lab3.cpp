@@ -51,32 +51,32 @@ struct IntList {
 
     // 2c. Getting the first node
     IntNode* getFirst() {
-        if(head == NULL)
+        if(head == NULL)                            // check if head(first node) exists
         {
-            return NULL;
+            return NULL;                            // return NULL if it doesn't exist
         }
         else
         {
-            return head;
+            return head;                            // get/return the head node if it exists
         }
     }
 
     // 2d. Getting the node after any other node
     IntNode* getNext(IntNode* node) {
-        if(node->next == NULL)
+        if(node->next == NULL)                      // check if the next node of a given node exists
         {
-            return NULL;
+            return NULL;                            // return NULL if it doesn't exist
         }
         else
         {
-            return node->next;
+            return node->next;                      // get/return the next node if it exists
         }
     }
 
     // 2e. Deleting a node
     deleteNode(IntNode* node) {
-        delete node;
-        node = NULL;
+        delete node;                                // delete the node
+        node = NULL;                                // set the node to NULL
     }
 };
 
