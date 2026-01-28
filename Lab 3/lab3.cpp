@@ -48,6 +48,36 @@ struct IntList {
 
         return newNode;
     }
+
+    // 2c. Getting the first node
+    IntNode* getFirst() {
+        if(head == NULL)
+        {
+            return NULL;
+        }
+        else
+        {
+            return head;
+        }
+    }
+
+    // 2d. Getting the node after any other node
+    IntNode* getNext(IntNode* node) {
+        if(node->next == NULL)
+        {
+            return NULL;
+        }
+        else
+        {
+            return node->next;
+        }
+    }
+
+    // 2e. Deleting a node
+    deleteNode(IntNode* node) {
+        delete node;
+        node = NULL;
+    }
 };
 
 //temporary main
