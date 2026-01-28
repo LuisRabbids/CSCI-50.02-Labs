@@ -153,20 +153,50 @@ struct IntStack{
 
 //temporary main
 int main() {
+    cout << "INTLIST" << endl;
     IntList list;
+    IntNode* head = list.createFirst(1);        // 2a. Create
+    IntNode* n2 = list.insertAfter(head, 2);    // 2b. Insert
+    list.insertAfter(n2, 3);
 
-    IntNode* first = list.createFirst(6);
-    list.insertAfter(first, 67);
-    list.insertAfter(first, 7);
-
-    // traverse the list
-    IntNode* current = list.head;
-    while (current != NULL) {
-        cout << current->data << " ";
-        current = current->next;
+    // 2c & 2d. Traverse
+    cout << "List: "; 
+    IntNode* curr = list.getFirst();
+    while (curr != NULL) {
+        cout << curr->data << " ";
+        curr = list.getNext(curr);
     }
 
     cout << endl;
+    
+    // 2e. Delete
+    cout << "Deleting 2..." << endl;
+    list.deleteNode(n2);
+    
+    // Verify deletion
+    curr = list.getFirst();
+    cout << "List: ";
+    while (curr != NULL) {
+        cout << curr->data << " ";
+        curr = list.getNext(curr);
+    }
+
+    cout << endl << endl;
+
+    cout << "INTSTACK DEMO" << endl;
+    IntStack stack;
+    
+    // 3. Push & Size
+    stack.push(10); 
+    stack.push(20);
+    cout << "Size: " << stack.size() << endl;   // Should be 2
+
+    // 3. Pop
+    cout << "Popped: " << stack.pop() << endl;  // 20
+    cout << "Popped: " << stack.pop() << endl;  // 10
+    
+    // 3. Safety Check
+    cout << "Empty Pop: " << stack.pop() << endl; // Should not crash
 
     return 0;
 }
