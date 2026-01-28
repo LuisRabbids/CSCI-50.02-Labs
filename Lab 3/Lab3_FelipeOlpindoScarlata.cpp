@@ -73,10 +73,26 @@ struct IntList {
         }
     }
 
-    // 2e. Deleting a node
-    void deleteNode(IntNode* node) {
-        delete node;                                // delete the node
-        node = NULL;                                // set the node to NULL
+    // 2e. Deleting a node (Assumes node is not Head)
+    void deleteNode(IntNode* nodeToDelete) {
+        IntNode* current = head;                                    // Start a temporary pointer at the beginning of the list
+        while (current != NULL && current->next != nodeToDelete){   // Loop until we find the node situated *before* the target
+            current = current->next;                                // Move the pointer to the next node
+        }
+        if (current != NULL){                                       // Check if we successfully found the node before the target
+            current->next = nodeToDelete->next;                     // Link the previous node to the node *after* the target (bypass target)
+            delete nodeToDelete;                                    // Free the memory of the target node
+        }
+    }
+
+    // Destructor
+    ~IntList() {
+        IntNode* current = head;                      // Start a temporary pointer at the beginning
+        while (current != NULL) {                     // Loop as long as there are nodes left in the list
+            IntNode* temp = current;                  // Save the current node in a temporary variable
+            current = current->next;                  // Move to the next node immediately so we don't lose the chain
+            delete temp;                              // Delete the saved node to free memory
+        }
     }
 };
 
@@ -84,20 +100,20 @@ struct IntList {
 // 3. IntStack struct
 // Implements a stack using IntNode internally
 // IntNode is NOT exposed to the user
-struct IntStack {
+struct IntStack{
     private:
         IntNode* topNode;    // pointer to the top node of the stack (hidden from user)
         int stackSize;       // tracks the current size of the stack
 
     public:
         // Constructor initializes empty stack
-        IntStack() {
+        IntStack(){
             topNode = NULL;
             stackSize = 0;
         }
 
         // Push: add integer to the top of stack
-        void push(int value) {
+        void push(int value){
             IntNode* newNode = new IntNode;     // Create a new node
             newNode->data = value;
             newNode->next = topNode;            // Link the new node to the current top
@@ -106,7 +122,7 @@ struct IntStack {
         }
 
         // Pop: remove and return integer from top of stack
-        int pop() {
+        int pop(){
             if (topNode == NULL) {       // Check if stack is empty                      
                 cout << "Stack is empty. Cannot pop. Returning 0." << endl;
                 return 0;
@@ -121,16 +137,16 @@ struct IntStack {
             return value;
         }
 
-        int size() {                     // Size: return current number of elements in stack
+        int size(){                     // Size: return current number of elements in stack
             return stackSize;
         }
 
         // Destructor
-        ~IntStack() {
-            while (topNode != NULL) {
-                IntNode* temp = topNode;
-                topNode = topNode->next;
-                delete temp;
+        ~IntStack(){
+            while (topNode != NULL){         // Loop as long as the stack is not empty (top exists)
+                IntNode* temp = topNode;     // Save the current top node into a temporary pointer
+                topNode = topNode->next;     // Move the top pointer down to the next node in the stack
+                delete temp;                 // Delete the old top node to free its memory
             }
         }
 };
