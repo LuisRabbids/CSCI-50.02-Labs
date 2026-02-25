@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
 
     cout << "\t.file\t\"multiplyBy" << x <<".cpp\"" << endl;
     cout << "\t.text" << endl;
-    cout << "\t.globl _Z11multiplyBy" << x << "P8IntArrayi" << endl;
-    cout << "\t.globl _Z11multiplyBy" << x << "P8IntArrayi, @function" << endl;
+    cout << "\t.globl\t_Z11multiplyBy" << x << "P8IntArrayi" << endl;
+    cout << "\t.type\t_Z11multiplyBy" << x << "P8IntArrayi, @function" << endl;
     cout << "_Z11multiplyByXP8IntArrayi:" << endl;
 
     cout << ".LFB0:" << endl;
