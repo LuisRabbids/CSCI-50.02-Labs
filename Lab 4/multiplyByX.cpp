@@ -1,7 +1,10 @@
 #include "IntArray.h"
 
-
-void multiplyByX(IntArray *p, int x) {
-    // multiply x with all elements of IntArray
-    // (overwrite the previous elements)
+void multiplyByX(IntArray *p, int x)
+{
+    int n = p->size;
+    int *arr = p->elements;
+    for (int i = 0; i < n; ++i) {
+        arr[i] = arr[i] * x;
+    }
 }
