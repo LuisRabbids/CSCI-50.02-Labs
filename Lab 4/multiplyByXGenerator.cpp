@@ -4,8 +4,7 @@ using namespace std;
 
 int main(char *argv[])
 {
-    int x;
-    cin >> x;
+    int x = argv[0]
 
     cout << "\t.file\t\"multiplyBy" << x <<".cpp\"" << endl;
     cout << "\t.text" << endl;
