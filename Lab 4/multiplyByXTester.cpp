@@ -1,5 +1,6 @@
 #include <iostream>
 #include "IntArray.h"
+#include "multiplyByX.cpp"
 
 
 extern void multiplyByX(IntArray *p, int x);
