@@ -10,6 +10,11 @@ int main(int argc, char *argv[])
     cout << "\t.text" << endl;
     cout << "\t.globl _Z11multiplyBy" << x << "P8IntArrayi" << endl;
     cout << "\t.globl _Z11multiplyBy" << x << "P8IntArrayi, @function" << endl;
+    cout << "_Z11multiplyByXP8IntArrayi:" << endl;
+
+    cout << ".LFB0:" << endl;
+    cout << "\t.cfi_startproc" << endl;
+    cout << "endbr64" << endl;
     
     return 0;
 }
