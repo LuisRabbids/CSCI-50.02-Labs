@@ -1,5 +1,6 @@
 #include <iostream>
 #include "IntArray.h"
+using namespace std;
 
 extern void multiplyByX(IntArray *p, int x);
 
@@ -15,17 +16,17 @@ int main() {
     }   
 
     // - print it out
-    std::cout << "Before: ";
-    for (int i = 0; i < A.size; ++i) std::cout << A.elements[i] << " ";
-    std::cout << "\n";
+    cout << "Before: ";
+    for (int i = 0; i < A.size; ++i) cout << A.elements[i] << " ";
+    cout << "\n";
 
     // - multiply it by a number of your choosing via multiplyByX()
     multiplyByX(&A, 67);
 
     // - print the result
-    std::cout << "After:  ";
-    for (int i = 0; i < A.size; ++i) std::cout << A.elements[i] << " ";
-    std::cout << "\n";
+    cout << "After:  ";
+    for (int i = 0; i < A.size; ++i) cout << A.elements[i] << " ";
+    cout << "\n";
 
     delete[] A.elements;
     return 0;
