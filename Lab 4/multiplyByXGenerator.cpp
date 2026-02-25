@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
 
     cout << ".LFB0:" << endl;
     cout << "\t.cfi_startproc" << endl;
-    cout << "endbr64" << endl;
+    cout << "\tendbr64" << endl;
     
     return 0;
 }
