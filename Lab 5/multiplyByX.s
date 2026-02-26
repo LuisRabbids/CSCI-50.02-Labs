@@ -1,4 +1,4 @@
-	.file	"multiplyByX.cpp"
+	.file	"multiplyByX.cp	p"
 	.text
 	.globl	_Z11multiplyByXP8IntArrayi
 	.type	_Z11multiplyByXP8IntArrayi, @function
@@ -7,8 +7,8 @@ _Z11multiplyByXP8IntArrayi:
 	.cfi_startproc
 	endbr64
 	pushq	%rbp
-	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
+	.cfi_def_cfa_offset	16
+	.cfi_offset	6, -16
 	movq	%rsp, %rbp
 	.cfi_def_cfa_register 6
 	movq	%rdi, -24(%rbp)
