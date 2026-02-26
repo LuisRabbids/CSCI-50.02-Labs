@@ -29,5 +29,7 @@ int main() {
     cout << "\n";
 
     delete[] A.elements;
+    A.elements = NULL;
+    
     return 0;
 }
