@@ -88,7 +88,3 @@ int main(int argc, char *argv[])
     
     return 0;
 }
-
-// https://learn.microsoft.com/en-us/cpp/cpp/main-function-command-line-args?view=msvc-170
-// https://www.geeksforgeeks.org/cpp/cpp-program-for-char-to-int-conversion/
-// https://itanium-cxx-abi.github.io/cxx-abi/abi.html#mangling
