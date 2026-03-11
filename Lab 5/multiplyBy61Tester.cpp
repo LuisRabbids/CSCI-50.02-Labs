@@ -3,7 +3,7 @@
 using namespace std;
 
 
-extern void multiplyBy61(IntArray *p);
+extern void multiplyBy99(IntArray *p);
 
 
 int main(){
@@ -25,10 +25,10 @@ int main(){
     cout << "\n";
 
     // Call generated assembly function, pass the struct pointer only
-    multiplyBy61(&A);
+    multiplyBy99(&A);
 
     // Print the result after multiplying
-    cout << "After multiplying by 61: ";
+    cout << "After multiplying by 99: ";
     for (int i = 0; i < A.size; ++i) {
         cout << A.elements[i] << " ";
     }
