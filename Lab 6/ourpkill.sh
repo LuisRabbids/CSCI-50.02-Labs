@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# Error Handling - check argument count (must be 1 or 2)
+# Error handling - check argument count (must be 1 or 2)
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     echo "Error: Invalid number of arguments." >&2
     echo "Usage: ./ourpkill.sh [-signal] pattern" >&2
@@ -31,14 +31,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Execute Kill
+# Execute kill
 if [ -z "$PIDS" ]; then
     exit 0         # if PIDS is empty (no matching processes) then exit
 fi
 
 # Loop through each PID found and send the signal
 for PID in $PIDS; do
-    # Run the default Unix kill command
+    # Run the default unix kill command
     kill $SIGNAL $PID 2>/dev/null     # redirect standard error (2>) to /dev/null to keep it quiet
     
     # If the kill command fails, output an error
