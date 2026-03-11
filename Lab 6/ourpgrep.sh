@@ -16,7 +16,8 @@ PATTERN=$1
 # - grep "^$USER": Filters for rows that START with (^) the current user's name
 # - grep "$PATTERN": Searches the remaining lines for the provided pattern
 # - grep -v "grep": Excludes the 'grep' command itself from the search results
-# - grep -v "$0": Excludes THIS script from showing up in the results
+# - grep -v "$0": Excludes this script from showing up in the results
+# - grep -v "ourpkill": Excludes the parent kill script so it doesn't accidentally kill itself
 # - tr -s " ": Squeezes multiple spaces into a single space
 # - cut -d " " -f2: Cuts the string using a space as the delimiter and grabs the 2nd field (the PID)
-ps aux | grep "^$USER" | grep "$PATTERN" | grep -v "grep" | grep -v "$0" | tr -s " " | cut -d " " -f2
+ps aux | grep "^$USER" | grep "$PATTERN" | grep -v "grep" | grep -v "$0" | grep -v "ourpkill" | tr -s " " | cut -d " " -f2
