@@ -5,7 +5,7 @@
 //entry function
 void *monteCarlo(void *ptr);
 
-struct ThreadStuff // rename
+struct ThreadData
 {
     int threadNumber;       //thread number, ie thread 0, thread 1, thread 2, etc
     int threadTrials;       //number of trials in the thread
@@ -22,5 +22,28 @@ int main(int argc, char *argv[])
     int trials = atoi(argv[2]);
     int progressNum = atoi(argv[3]);
 
-    
+    pthread_t threads[threadNum];
+    ThreadData threadData[threadNum];
+
+    for(int i = 0; i < threadNum; i++)
+    {
+        threadData[i].threadNumber = i;
+        threadData[i].threadTrials = trials;
+        threadData[i].progressNumber = progressNum;
+        threadData[i].insideCount = 0;
+
+        if(pthread_create(&threads[i], NULL, monteCarlo, &threadData[i]))
+        {
+            fprintf(stderr,"Error - pthread_create()");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    for(int i = 0; i < threadNum; i++)
+    {
+        pthread_join(threads[i], NULL);
+    }
+
+    long double pi = 4.0 * totalInside / totalTrials;
+    cout << "Final result: " << pi << endl;
 }
