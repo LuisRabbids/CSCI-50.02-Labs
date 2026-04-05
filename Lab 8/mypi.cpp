@@ -46,4 +46,7 @@ int main(int argc, char *argv[])
 
     long double pi = 4.0 * totalInside / totalTrials;
     cout << "Final result: " << pi << endl;
+
+    return 0;
 }
+
