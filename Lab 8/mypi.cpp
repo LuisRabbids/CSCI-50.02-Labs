@@ -13,3 +13,14 @@ struct ThreadStuff // rename
     int insideCount;        //number of samples in the circle
 };
 
+int totalTrials = 0;        //total number of trials across all threads
+int totalInside = 0;        //total number of samples in the circle across all threads
+
+int main(int argc, char *argv[])
+{
+    int threadNum = atoi(argv[1]);
+    int trials = atoi(argv[2]);
+    int progressNum = atoi(argv[3]);
+
+    
+}
