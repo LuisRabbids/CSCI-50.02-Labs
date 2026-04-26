@@ -2,6 +2,7 @@ struct SharedMemory
 {
     int frameNumber;
     int totalFrames;
+    char frame[4096];       //frame size, 4kb should be enough
 }
 
 void wait(int semID)
