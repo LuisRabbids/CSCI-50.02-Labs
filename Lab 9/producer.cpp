@@ -67,9 +67,16 @@ int main(int argc, char* argv[])
 
     while(true)
     {
-        wait(semID)
+        wait(semID);
 
         strcpy(data->frame, frames[index].c_str());
+        data->frameNumber = index + 1;
+        data->newFrame = 1;
 
+        signal(semID);
+
+        index = (index + 1) % frameCount;
+
+        usleep(framerate);
     }
 }
