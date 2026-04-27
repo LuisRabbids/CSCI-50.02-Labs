@@ -1,5 +1,15 @@
 #include <iostream>
 #include <string>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <unistd.h>
+#include <cstring>
+#include <vector>
+#include <fstream>
+#include <cstdlib>
+
+#include "shared.h"
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -27,7 +37,7 @@ int main(int argc, char* argv[])
     key_t shmKey = 5678;
     int shmID = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
 
-    SharedData* data = (SharedData*)shmat(shmId, NULL, 0);
+    SharedData* data = (SharedData*)shmat(shmID, NULL, 0);
     data->frameNumber = 0;
     data->totalFrames = 0;
 
@@ -61,7 +71,7 @@ int main(int argc, char* argv[])
         frame.clear();
     }
 
-    data->frameCount = frameCount;
+    data->totalFrames = frameCount;
 
     int index = 0;
 

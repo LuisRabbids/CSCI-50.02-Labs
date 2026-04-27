@@ -1,4 +1,10 @@
 #include <iostream>
+#include <string>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+
+#include "shared.h"
 using namespace std;
 
 int main(int argc, char* argv[])
