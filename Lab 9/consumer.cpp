@@ -34,12 +34,12 @@ int main(int argc, char* argv[])
     }
 
     key_t semKey = 1234;
-    int semId = semget(semKey, 1, IPC_CREAT | 0666);
+    int semID = semget(semKey, 1, IPC_CREAT | 0666);
 
     key_t shmKey = 5678;
-    int shmId = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
+    int shmID = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
 
-    SharedData* data = (SharedData*)shmat(shmId, NULL, 0);
+    SharedData* data = (SharedData*)shmat(shmID, NULL, 0);
 
     int previousFrame = -1;
     int skippedFrames = 0;
