@@ -4,9 +4,19 @@
 #include <sys/sem.h>
 #include <sys/shm.h>
 #include <unistd.h>
+#include <pthread.h>
 
 #include "shared.h"
 using namespace std;
+
+bool running = true;                // set to false when the user presses Enter
+
+void* exitWhenEnter(void* arg)      // entry function for the thread that listens for Enter
+{
+    cin.get();                      // blocks here until user presses Enter
+    running = false;
+    return NULL;
+}
 
 int main(int argc, char* argv[])
 {
@@ -45,7 +55,11 @@ int main(int argc, char* argv[])
     int previousFrame = -1;
     int skippedFrames = 0;
 
-    while(true)
+    // create a thread that listens for Enter in the background while the main loop keeps running
+    pthread_t inputThread;
+    pthread_create(&inputThread, NULL, exitWhenEnter, NULL);
+
+    while(running)          // exits when Enter is pressed
     {
         if(sync)
         {
@@ -72,4 +86,6 @@ int main(int argc, char* argv[])
 
         signal(semID);
     }
+
+    return 0;
 }

@@ -8,9 +8,19 @@
 #include <vector>
 #include <fstream>
 #include <cstdlib>
+#include <pthread.h>
 
 #include "shared.h"
 using namespace std;
+
+bool running = true;                // set to false when the user presses Enter
+
+void* exitWhenEnter(void* arg)      // entry function for the thread that listens for Enter
+{
+    cin.get();                      // blocks here until user presses Enter
+    running = false;
+    return NULL;
+}
 
 int main(int argc, char* argv[])
 {
@@ -50,6 +60,7 @@ int main(int argc, char* argv[])
 
     int frameCount = 0;
 
+    //reads through each 'frame' in the file
     while(getline(file, line))
     {
         if(!line.empty() && line[0] == '\033')
@@ -77,18 +88,24 @@ int main(int argc, char* argv[])
 
     int index = 0;
 
-    while(true)
+    // create a thread that listens for Enter in the background while the main loop keeps running
+    pthread_t inputThread;
+    pthread_create(&inputThread, NULL, exitWhenEnter, NULL);
+
+    while(running)          // exits when Enter is pressed
     {
         wait(semID);
 
-        strcpy(data->frame, frames[index].c_str());
+        strcpy(data->frame, frames[index].c_str());     //copies the frame in the vector into the shared data
         data->frameNumber = index + 1;
         data->newFrame = 1;
 
         signal(semID);
 
-        index = (index + 1) % frameCount;
+        index = (index + 1) % frameCount;               //resets the index to 0 if it reaches the last frame
 
         usleep(framerate);
     }
+
+    return 0;
 }
