@@ -2,6 +2,7 @@ struct SharedMemory
 {
     int frameNumber;
     int totalFrames;
+    int newFrame;
     char frame[4096];       //frame size
 }
 
