@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 
     while(getline(file, line))
     {
-        if(!line.empty() && line[0] == '\066c')
+        if(!line.empty() && line[0] == '\066')
         {
             frameCount++;
 
