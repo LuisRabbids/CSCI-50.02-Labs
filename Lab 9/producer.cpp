@@ -26,4 +26,40 @@ int main(int argc, char* argv[])
 
     key_t shmKey = 5678;
     int shmId = shmget(shmKey, sizeof(SharedData), IPC_CREAT | 0666);
+
+    SharedData* data = (SharedData*)shmat(shmId, NULL, 0);
+    data->frameNumber = 0;
+    data->totalFrames = 0;
+
+    ifstream file(fileName);
+    string line = "";
+    string frame = "";
+    vector<string> frames;
+
+    int frameCount = 0;
+
+    while(getline(file, line))
+    {
+        if(!line.empty() && line[0] == '\066c')
+        {
+            frameCount++;
+
+            if(!frame.empty())      //new frame
+            {
+                frames.push_back(frame);
+                frame.clear();
+            }
+        }
+        else
+        {
+            frame += line + "\n";
+        }
+    }
+    if(!frame.empty())      //push last frame
+    {
+        frames.push_back(frame);
+        frame.clear();
+    }
+
+    data->frameCount = frameCount;
 }
