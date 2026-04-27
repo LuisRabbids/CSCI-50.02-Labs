@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     int semId = semget(semKey, 1, IPC_CREAT | 0666);
 
     key_t shmKey = 5678;
-    int shmId = shmget(shmKey, sizeof(SharedData), IPC_CREAT | 0666);
+    int shmId = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
 
     SharedData* data = (SharedData*)shmat(shmId, NULL, 0);
     data->frameNumber = 0;
@@ -55,11 +55,21 @@ int main(int argc, char* argv[])
             frame += line + "\n";
         }
     }
-    if(!frame.empty())      //push last frame
+    if(!frame.empty())              //push last frame
     {
         frames.push_back(frame);
         frame.clear();
     }
 
     data->frameCount = frameCount;
+
+    int index = 0;
+
+    while(true)
+    {
+        wait(semID)
+
+        strcpy(data->frame, frames[index].c_str());
+
+    }
 }
