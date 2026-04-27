@@ -34,4 +34,35 @@ int main(int argc, char* argv[])
     int shmId = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
 
     SharedData* data = (SharedData*)shmat(shmId, NULL, 0);
+
+    int previousFrame = -1;
+    int skippedFrames = 0;
+
+    while(true)
+    {
+        if(sync)
+        {
+            while(data->newFrame == 0);
+        }
+        else
+        {
+            usleep(framerate);
+        }
+
+        wait(semID);
+
+        if(data->frameNumber != previousFrame + 1)
+        {
+            skipped += (data->frameNumber - previousFrame - 1);
+        }
+
+        printf("\033c");
+        printf("%s", data->frame);
+        printf("Current frame: %d / %d (%d frame(s) skipped)", data->frameNumber, data->totalFrames, skippedFrames);
+
+        previousFrame = data->frameNumber;
+        data->newFrame = 0;
+
+        signal(semID);
+    }
 }
