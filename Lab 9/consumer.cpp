@@ -3,6 +3,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include <sys/shm.h>
+#include <unistd.h>
 
 #include "shared.h"
 using namespace std;
@@ -59,7 +60,7 @@ int main(int argc, char* argv[])
 
         if(data->frameNumber != previousFrame + 1)
         {
-            skipped += (data->frameNumber - previousFrame - 1);
+            skippedFrames += (data->frameNumber - previousFrame - 1);
         }
 
         printf("\033c");
