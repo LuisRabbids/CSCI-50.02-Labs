@@ -34,8 +34,10 @@ int main(int argc, char* argv[])
     key_t semKey = 1234;
     int semID = semget(semKey, 1, IPC_CREAT | 0666);
 
+    semctl(semID, 0, SETVAL, 1);
+
     key_t shmKey = 5678;
-    int shmID = shmget(shmKey, 1 << 10, IPC_CREAT | 0666);
+    int shmID = shmget(shmKey, 65536, IPC_CREAT | 0666);
 
     SharedData* data = (SharedData*)shmat(shmID, NULL, 0);
     data->frameNumber = 0;
