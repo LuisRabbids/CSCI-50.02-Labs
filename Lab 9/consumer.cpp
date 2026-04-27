@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 
         printf("\033c");
         printf("%s", data->frame);
-        printf("Current frame: %d / %d (%d frame(s) skipped)", data->frameNumber, data->totalFrames, skippedFrames);
+        printf("Current frame: %d / %d (%d frame(s) skipped)\n", data->frameNumber, data->totalFrames, skippedFrames);
 
         previousFrame = data->frameNumber;
         data->newFrame = 0;
